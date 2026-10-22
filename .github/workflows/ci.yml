@@ -1,0 +1,105 @@
+name: CI Multi-Platform Builds
+
+on:
+  push:
+    branches:
+      - master
+      - 'dev**'
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  build-macos:
+    name: Build macOS (amd64)
+    runs-on: macos-13
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: krdlab/setup-haxe@v2
+        with:
+          haxe-version: '4.3.3'
+      - run: haxe -version
+      - run: haxe setup.hxml
+      - run: haxelib list
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: cd app && npm install
+
+      - name: Build macOS amd64
+        run: cd app && npm run pack-macos-amd64
+
+      - name: Upload macOS amd64 Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos_amd64
+          path: app/redist/LDtk*installer.dmg
+
+  build-windows:
+    name: Build Windows (win_64)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: krdlab/setup-haxe@v2
+        with:
+          haxe-version: '4.3.3'
+      - run: haxe -version
+      - run: haxe setup.hxml
+      - run: haxelib list
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: cd app && npm install
+
+      - name: Build Windows x64
+        run: cd app && npm run pack-win64
+
+      - name: Upload Windows win_64 Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: win_64
+          path: app/redist/LDtk*installer.exe
+
+  build-linux:
+    name: Build Linux (AppImage & deb)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: krdlab/setup-haxe@v2
+        with:
+          haxe-version: '4.3.3'
+      - run: haxe -version
+      - run: haxe setup.hxml
+      - run: haxelib list
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: cd app && npm install
+
+      - name: Build Linux (AppImage & deb)
+        run: cd app && npm run pack-linux
+
+      - name: Upload Linux AppImage Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux_appimage
+          path: app/redist/LDtk*.AppImage
+
+      - name: Upload Linux deb Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux_deb
+          path: app/redist/LDtk*.deb

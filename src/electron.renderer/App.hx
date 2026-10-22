@@ -67,6 +67,8 @@ class App extends dn.Process {
 
 		// Init
 		ME = this;
+		untyped js.Browser.window.app = this;
+		untyped js.Browser.window.App = App;
 		createRoot(Boot.ME.s2d);
 		lastKnownMouse = { pageX:0, pageY:0 }
 		jCanvas.hide();
@@ -443,7 +445,11 @@ class App extends dn.Process {
 		if( args.getLastSoloValue()==null )
 			return null;
 
-		var fp = dn.FilePath.fromFile( args.getAllSoloValues().join(" ") );
+		var soloValues = args.getAllSoloValues();
+		if( soloValues.length>1 && (soloValues[0]=="." || soloValues[0]=="./") )
+			soloValues.shift();
+
+		var fp = dn.FilePath.fromFile( soloValues.join(" ") );
 		if( fp.fileWithExt!=null )
 			return fp;
 

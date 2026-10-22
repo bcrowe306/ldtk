@@ -69,6 +69,8 @@ class Editor extends Page {
 		loadPageTemplate("editor");
 
 		ME = this;
+		untyped js.Browser.window.editor = this;
+		untyped js.Browser.window.Editor = Editor;
 		createRoot(parent.root);
 		App.ME.registerRecentProject(p.filePath.full);
 		jDepths = jPage.find("#worldDepths");
