@@ -17,16 +17,16 @@ class EntityInstance {
 	public var customHeight: Null<Int>;
 
 	public var width(get,never) : Int;
-		inline function get_width() return customWidth!=null ? customWidth : def.width;
+		inline function get_width() return customWidth!=null ? customWidth : (def!=null ? def.width : 16);
 
 	public var height(get,never) : Int;
-		inline function get_height() return customHeight!=null ? customHeight : def.height;
+		inline function get_height() return customHeight!=null ? customHeight : (def!=null ? def.height : 16);
 
 	public var fieldInstances : Map<Int, data.inst.FieldInstance> = new Map();
 
-	public var left(get,never) : Int; inline function get_left() return M.round( x - width*def.pivotX );
+	public var left(get,never) : Int; inline function get_left() return M.round( x - width*(def!=null ? def.pivotX : 0) );
 	public var right(get,never) : Int; inline function get_right() return left + width;
-	public var top(get,never) : Int; inline function get_top() return M.round( y - height*def.pivotY );
+	public var top(get,never) : Int; inline function get_top() return M.round( y - height*(def!=null ? def.pivotY : 0) );
 	public var bottom(get,never) : Int; inline function get_bottom() return top + height;
 
 
@@ -41,8 +41,8 @@ class EntityInstance {
 		return 'EntityInst "${def.identifier}" @$x,$y';
 	}
 
-	inline function get_centerX() return M.round( x + (0.5-def.pivotX)*width );
-	inline function get_centerY() return M.round( y + (0.5-def.pivotY)*height );
+	inline function get_centerX() return M.round( x + (0.5-(def!=null ? def.pivotX : 0.5))*width );
+	inline function get_centerY() return M.round( y + (0.5-(def!=null ? def.pivotY : 0.5))*height );
 
 	inline function get_worldX() return Std.int( x + _li.level.worldX );
 	inline function get_worldY() return Std.int( y + _li.level.worldY );

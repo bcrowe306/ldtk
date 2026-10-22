@@ -204,9 +204,11 @@ class LevelRender extends dn.Process {
 			case LayerRuleAdded(r):
 
 			case LayerRuleChanged(r):
-				var li = editor.curLevel.getLayerInstanceFromRule(r);
-				li.applyRuleToFullLayer(r, true);
-				invalidateLayer(li);
+				var li = editor.curLevel!=null ? editor.curLevel.getLayerInstanceFromRule(r) : null;
+				if( li!=null ) {
+					li.applyRuleToFullLayer(r, true);
+					invalidateLayer(li);
+				}
 
 			case LayerRuleSeedChanged:
 				invalidateLayer( editor.curLayerInstance );

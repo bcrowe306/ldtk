@@ -968,9 +968,11 @@ class FieldDefsForm {
 				()->curField.textLanguageMode,
 				(e)->{
 					curField.textLanguageMode = e;
+					editor.ge.emit(FieldDefChanged(curField));
 				},
 				(e)->Lang.getTextLanguageMode(e)
 			);
+			i.linkEvent(FieldDefChanged(curField));
 		}
 
 		// Accept file types

@@ -555,6 +555,13 @@ class Level {
 		return false;
 	}
 
+	public function hasLayerInstance(layerDefUid:Int) : Bool {
+		for(li in layerInstances)
+			if( li.layerDefUid==layerDefUid )
+				return true;
+		return false;
+	}
+
 	public function getLayerInstance(?layerDefUid:Int, ?layerDef:data.def.LayerDef) : data.inst.LayerInstance {
 		if( layerDefUid==null && layerDef==null )
 			throw "Need 1 parameter";
@@ -571,7 +578,7 @@ class Level {
 
 	public function getLayerInstanceFromRule(r:data.def.AutoLayerRuleDef) {
 		var ld = _project.defs.getLayerDefFromRule(r);
-		return ld!=null ? getLayerInstance(ld) : null;
+		return ld!=null && hasLayerInstance(ld.uid) ? getLayerInstance(ld) : null;
 	}
 
 

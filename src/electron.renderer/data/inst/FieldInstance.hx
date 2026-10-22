@@ -636,7 +636,10 @@ class FieldInstance {
 				+ ( checkLevel==null || checkLevel!=ei._li.level ? " in "+ei._li.level.identifier : "" );
 	}
 
-	public function setEntityRefTo(arrayIdx:Int, sourceEi:EntityInstance, targetEi:EntityInstance) {
+	public function setEntityRefTo(arrayIdx:Int, sourceEi:EntityInstance, targetEi:EntityInstance, tidy=true) {
+		if( targetEi==null )
+			return;
+
 		var oldTargetEi = getEntityRefInstance(arrayIdx);
 		_project.unregisterReverseIidRef(sourceEi, oldTargetEi);
 
@@ -671,9 +674,11 @@ class FieldInstance {
 		// setSymmetricalRef(arrayIdx, sourceEi);
 
 		// Tidy lost symmetries
-		if( oldTargetEi!=null )
-			oldTargetEi.tidyLostSymmetricalEntityRefs(def);
-		targetEi.tidyLostSymmetricalEntityRefs(def);
+		if( tidy ) {
+			if( oldTargetEi!=null )
+				oldTargetEi.tidyLostSymmetricalEntityRefs(def);
+			targetEi.tidyLostSymmetricalEntityRefs(def);
+		}
 	}
 
 	public function getTileRectObj(arrayIdx:Int) : Null<ldtk.Json.TilesetRect> {

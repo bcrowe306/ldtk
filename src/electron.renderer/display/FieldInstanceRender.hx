@@ -451,7 +451,7 @@ class FieldInstanceRender {
 						var fy = ei.centerY - ei.y + ei._li.pxTotalOffsetY;
 						for(i in 0...fi.getArrayLength()) {
 							var tei = fi.getEntityRefInstance(i);
-							if( tei==null )
+							if( tei==null || tei.def==null )
 								continue;
 							var tx = M.round( tei.centerX + tei._li.level.worldX + tei._li.pxTotalOffsetX ) - ( ei.x + ei._li.level.worldX );
 							var ty = M.round( tei.centerY + tei._li.level.worldY + tei._li.pxTotalOffsetY ) - ( ei.y + ei._li.level.worldY );
@@ -468,7 +468,7 @@ class FieldInstanceRender {
 						var fy = ei.y - ei.y + ei._li.pxTotalOffsetY;
 						for(i in 0...fi.getArrayLength()) {
 							var tei = fi.getEntityRefInstance(i);
-							if( tei==null )
+							if( tei==null || tei.def==null )
 								continue;
 							var tx = M.round( tei.x + tei._li.level.worldX - ( ei.x + ei._li.level.worldX ) ) + tei._li.pxTotalOffsetX;
 							var ty = M.round( tei.y + tei._li.level.worldY - ( ei.y + ei._li.level.worldY ) ) + tei._li.pxTotalOffsetY;
@@ -589,9 +589,11 @@ class FieldInstanceRender {
 					// Icon
 					var w = new h2d.Flow(valuesFlow);
 					var tile = fi.getIconForDisplay(idx);
-					var bmp = new h2d.Bitmap( tile, w );
-					var s = M.fmin( iconSize/tile.width, iconSize/tile.height );
-					bmp.setScale(s);
+					if( tile!=null ) {
+						var bmp = new h2d.Bitmap( tile, w );
+						var s = M.fmin( iconSize/tile.width, iconSize/tile.height );
+						bmp.setScale(s);
+					}
 				}
 				else if( fi.def.type==F_Color ) {
 					// Color disc

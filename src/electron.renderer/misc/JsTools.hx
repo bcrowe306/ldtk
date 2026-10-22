@@ -44,8 +44,8 @@ class JsTools {
 			},
 			group: group,
 			scroll: jScrollRoot!=null ? jScrollRoot.get(0) : jSortable.get(0),
-			scrollSpeed: 40,
-			scrollSensitivity: 140,
+			scrollSpeed: 15,
+			scrollSensitivity: 50,
 			animation: extraOptions.disableAnim==true ? 0 : 100,
 		}
 

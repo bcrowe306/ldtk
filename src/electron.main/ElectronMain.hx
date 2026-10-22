@@ -15,6 +15,10 @@ class ElectronMain {
 		if( settings.v.useBestGPU && !App.commandLine.hasSwitch("force_low_power_gpu") )
 			App.commandLine.appendSwitch("force_high_performance_gpu");
 
+		// Fix Linux sandboxing crash on modern distributions (AppImage / unprivileged userns)
+		if( Sys.systemName() == "Linux" && !App.commandLine.hasSwitch("no-sandbox") )
+			App.commandLine.appendSwitch("no-sandbox");
+
 		App.whenReady().then( (_)->showSplashWindow() );
 
 		// Mac

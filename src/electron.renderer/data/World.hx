@@ -170,7 +170,8 @@ class World {
 						var oldIid = fi.getEntityRefIid(i);
 						if( remaps.exists(oldIid) ) {
 							var tei = _project.getEntityInstanceByIid( remaps.get(oldIid) );
-							fi.setEntityRefTo(i, ei, tei);
+							if( tei!=null )
+								fi.setEntityRefTo(i, ei, tei, false);
 							i++;
 						}
 						else {

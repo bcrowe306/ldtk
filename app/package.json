@@ -27,7 +27,8 @@
 		"pack-macos-amd64": "npm run pack-prepare  &&  electron-builder build --mac --x64 --publish never",
 		"pack-win64": "npm run pack-prepare  &&  electron-builder build --win --x64 --publish never",
 		"pack-linux": "npm run pack-prepare  &&  electron-builder build --linux --x64 --publish never",
-		"test-e2e": "node --experimental-websocket ../tests_e2e/harness.js"
+		"test-e2e": "node --experimental-websocket ../tests_e2e/harness.js",
+		"test-fixes": "node --experimental-websocket ../tests_e2e/test_fixes.js"
 	},
 	"repository": {
 		"type": "git",

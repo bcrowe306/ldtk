@@ -1,0 +1,945 @@
+[
+  {
+    "number": 1254,
+    "title": "AppImage (Linux) crashes on start-up",
+    "url": "https://github.com/deepnight/ldtk/issues/1254",
+    "labels": [],
+    "matched": [
+      "ux",
+      "crash"
+    ]
+  },
+  {
+    "number": 1252,
+    "title": "Cant select null as enum value if the default value is not null",
+    "url": "https://github.com/deepnight/ldtk/issues/1252",
+    "labels": [],
+    "matched": [
+      "select"
+    ]
+  },
+  {
+    "number": 1247,
+    "title": "Chinese characters appear as question marks in the level/world view",
+    "url": "https://github.com/deepnight/ldtk/issues/1247",
+    "labels": [],
+    "matched": [
+      "view"
+    ]
+  },
+  {
+    "number": 1242,
+    "title": "Crash while deleting referenced entity type",
+    "url": "https://github.com/deepnight/ldtk/issues/1242",
+    "labels": [],
+    "matched": [
+      "crash"
+    ]
+  },
+  {
+    "number": 1234,
+    "title": "Application crashed with this errror",
+    "url": "https://github.com/deepnight/ldtk/issues/1234",
+    "labels": [],
+    "matched": [
+      "crash"
+    ]
+  },
+  {
+    "number": 1233,
+    "title": "Program Crashed While Deleting Entities",
+    "url": "https://github.com/deepnight/ldtk/issues/1233",
+    "labels": [],
+    "matched": [
+      "crash"
+    ]
+  },
+  {
+    "number": 1218,
+    "title": "Alt-click to pick on rule editor",
+    "url": "https://github.com/deepnight/ldtk/issues/1218",
+    "labels": [
+      "enhancement \ud83c\udd99",
+      "rules \u2728"
+    ],
+    "matched": [
+      "click"
+    ]
+  },
+  {
+    "number": 1217,
+    "title": "[Linux] Fails to start without --no-sandbox flag",
+    "url": "https://github.com/deepnight/ldtk/issues/1217",
+    "labels": [],
+    "matched": [
+      "ux"
+    ]
+  },
+  {
+    "number": 1216,
+    "title": "Duplicate level crashes with symetrical entity references (proposed fix included along with repo file).",
+    "url": "https://github.com/deepnight/ldtk/issues/1216",
+    "labels": [],
+    "matched": [
+      "crash"
+    ]
+  },
+  {
+    "number": 1209,
+    "title": "Crash when Saving.",
+    "url": "https://github.com/deepnight/ldtk/issues/1209",
+    "labels": [],
+    "matched": [
+      "crash"
+    ]
+  },
+  {
+    "number": 1203,
+    "title": "Guide grid offset",
+    "url": "https://github.com/deepnight/ldtk/issues/1203",
+    "labels": [],
+    "matched": [
+      "ui"
+    ]
+  },
+  {
+    "number": 1197,
+    "title": "LDtk keeps crashing",
+    "url": "https://github.com/deepnight/ldtk/issues/1197",
+    "labels": [],
+    "matched": [
+      "crash"
+    ]
+  },
+  {
+    "number": 1194,
+    "title": "No option to select install location from installer",
+    "url": "https://github.com/deepnight/ldtk/issues/1194",
+    "labels": [],
+    "matched": [
+      "select"
+    ]
+  },
+  {
+    "number": 1187,
+    "title": "[Feature request] Add an option to flip y rendering of entire map",
+    "url": "https://github.com/deepnight/ldtk/issues/1187",
+    "labels": [],
+    "matched": [
+      "render"
+    ]
+  },
+  {
+    "number": 1184,
+    "title": "Rectangle of tiles from a larger selection",
+    "url": "https://github.com/deepnight/ldtk/issues/1184",
+    "labels": [],
+    "matched": [
+      "select"
+    ]
+  },
+  {
+    "number": 1182,
+    "title": "When removing an enum on the top down example, application crash",
+    "url": "https://github.com/deepnight/ldtk/issues/1182",
+    "labels": [
+      "bug \ud83e\udeb3"
+    ],
+    "matched": [
+      "crash"
+    ]
+  },
+  {
+    "number": 1181,
+    "title": "Consistent Crash when clicking outside the IntGrid rules editor",
+    "url": "https://github.com/deepnight/ldtk/issues/1181",
+    "labels": [
+      "bug \ud83e\udeb3",
+      "rules \u2728"
+    ],
+    "matched": [
+      "crash",
+      "click"
+    ]
+  },
+  {
+    "number": 1180,
+    "title": "Make quick-search result pinnable",
+    "url": "https://github.com/deepnight/ldtk/issues/1180",
+    "labels": [
+      "new feature \u2b50"
+    ],
+    "matched": [
+      "ui"
+    ]
+  },
+  {
+    "number": 1177,
+    "title": "Language select does not update in Entity form",
+    "url": "https://github.com/deepnight/ldtk/issues/1177",
+    "labels": [
+      "bug \ud83e\udeb3",
+      "custom fields \u2630"
+    ],
+    "matched": [
+      "select"
+    ]
+  },
+  {
+    "number": 1174,
+    "title": "Opening a copied rule on a layer that doesn't have the int-grid value the rule requires casuses a crash",
+    "url": "https://github.com/deepnight/ldtk/issues/1174",
+    "labels": [
+      "bug \ud83e\udeb3",
+      "rules \u2728"
+    ],
+    "matched": [
+      "ui",
+      "crash"
+    ]
+  },
+  {
+    "number": 1173,
+    "title": "ldtk scroll problem",
+    "url": "https://github.com/deepnight/ldtk/issues/1173",
+    "labels": [],
+    "matched": [
+      "scroll"
+    ]
+  },
+  {
+    "number": 1169,
+    "title": "Crash on opening",
+    "url": "https://github.com/deepnight/ldtk/issues/1169",
+    "labels": [],
+    "matched": [
+      "crash"
+    ]
+  },
+  {
+    "number": 1160,
+    "title": "[FEATURE REQUEST] Select and move multiple levels in world view",
+    "url": "https://github.com/deepnight/ldtk/issues/1160",
+    "labels": [],
+    "matched": [
+      "view",
+      "select"
+    ]
+  },
+  {
+    "number": 1157,
+    "title": "Regular game crash.",
+    "url": "https://github.com/deepnight/ldtk/issues/1157",
+    "labels": [],
+    "matched": [
+      "crash"
+    ]
+  },
+  {
+    "number": 1155,
+    "title": "[BUG] Bake Layer Ignores Selected Tileset",
+    "url": "https://github.com/deepnight/ldtk/issues/1155",
+    "labels": [],
+    "matched": [
+      "select"
+    ]
+  },
+  {
+    "number": 1154,
+    "title": "Click the rule tileset, got error: Cannot read properties of null \uff08reading 'addClass'\uff09 \uff08TypeError\uff09",
+    "url": "https://github.com/deepnight/ldtk/issues/1154",
+    "labels": [],
+    "matched": [
+      "click"
+    ]
+  },
+  {
+    "number": 1153,
+    "title": "Black screen on Manjaro Linux",
+    "url": "https://github.com/deepnight/ldtk/issues/1153",
+    "labels": [],
+    "matched": [
+      "ux"
+    ]
+  },
+  {
+    "number": 1141,
+    "title": "The custom field values do not match what is displayed in the editor",
+    "url": "https://github.com/deepnight/ldtk/issues/1141",
+    "labels": [],
+    "matched": [
+      "display"
+    ]
+  },
+  {
+    "number": 1137,
+    "title": "Dragging a value in a long list goes NYYOOOM and it's hard to drop it in the right spot",
+    "url": "https://github.com/deepnight/ldtk/issues/1137",
+    "labels": [],
+    "matched": [
+      "drag"
+    ]
+  },
+  {
+    "number": 1130,
+    "title": "Inquiry About the Integer Limit for Custom Entity Fields in LDtk",
+    "url": "https://github.com/deepnight/ldtk/issues/1130",
+    "labels": [
+      "enhancement \ud83c\udd99",
+      "help wanted \ud83d\ude4b\u200d\u2642\ufe0f"
+    ],
+    "matched": [
+      "ui"
+    ]
+  },
+  {
+    "number": 1129,
+    "title": "Crash when i move the single level from world to another in a multiworld project",
+    "url": "https://github.com/deepnight/ldtk/issues/1129",
+    "labels": [],
+    "matched": [
+      "crash"
+    ]
+  },
+  {
+    "number": 1128,
+    "title": "[BUG] \"autoTilesKilledByOtherLayerUid\" is not cleared in existing layers, after another layer was deleted.",
+    "url": "https://github.com/deepnight/ldtk/issues/1128",
+    "labels": [],
+    "matched": [
+      "ui"
+    ]
+  },
+  {
+    "number": 1127,
+    "title": "crash when trying to toggle autolayer on and off w/ shift + R",
+    "url": "https://github.com/deepnight/ldtk/issues/1127",
+    "labels": [],
+    "matched": [
+      "crash"
+    ]
+  },
+  {
+    "number": 1125,
+    "title": "[Feature Request] Option to display point array as Polygon",
+    "url": "https://github.com/deepnight/ldtk/issues/1125",
+    "labels": [],
+    "matched": [
+      "display"
+    ]
+  },
+  {
+    "number": 1124,
+    "title": "Visual offset option for Entity editor visual",
+    "url": "https://github.com/deepnight/ldtk/issues/1124",
+    "labels": [],
+    "matched": [
+      "visual"
+    ]
+  },
+  {
+    "number": 1119,
+    "title": "Using keyboard +/- for zoom on Mac causes glitchy infinite zoom",
+    "url": "https://github.com/deepnight/ldtk/issues/1119",
+    "labels": [],
+    "matched": [
+      "zoom",
+      "glitch"
+    ]
+  },
+  {
+    "number": 1118,
+    "title": "Crashing on trying to delete enum",
+    "url": "https://github.com/deepnight/ldtk/issues/1118",
+    "labels": [],
+    "matched": [
+      "crash"
+    ]
+  },
+  {
+    "number": 1113,
+    "title": "Crash report",
+    "url": "https://github.com/deepnight/ldtk/issues/1113",
+    "labels": [],
+    "matched": [
+      "crash"
+    ]
+  },
+  {
+    "number": 1110,
+    "title": "uID and duplicate variable saving for Project/Individual Files causing issues with source control",
+    "url": "https://github.com/deepnight/ldtk/issues/1110",
+    "labels": [],
+    "matched": [
+      "ui"
+    ]
+  },
+  {
+    "number": 1107,
+    "title": "Crash + Json: Tileset rectangles are able to point to a nonexistent tileset definition",
+    "url": "https://github.com/deepnight/ldtk/issues/1107",
+    "labels": [],
+    "matched": [
+      "crash"
+    ]
+  },
+  {
+    "number": 1105,
+    "title": "\"Auto-Rendered Tiles\" preview impossible to use with black tiles!",
+    "url": "https://github.com/deepnight/ldtk/issues/1105",
+    "labels": [],
+    "matched": [
+      "render",
+      "view"
+    ]
+  },
+  {
+    "number": 1102,
+    "title": "[Bug] Switching Layers resets selected tile's flip settings",
+    "url": "https://github.com/deepnight/ldtk/issues/1102",
+    "labels": [],
+    "matched": [
+      "select"
+    ]
+  },
+  {
+    "number": 1097,
+    "title": "Naming of linux build.",
+    "url": "https://github.com/deepnight/ldtk/issues/1097",
+    "labels": [
+      "linux \ud83d\udc27"
+    ],
+    "matched": [
+      "ui",
+      "ux"
+    ]
+  },
+  {
+    "number": 1091,
+    "title": "Add Edit layer button to Rules panel",
+    "url": "https://github.com/deepnight/ldtk/issues/1091",
+    "labels": [
+      "enhancement \ud83c\udd99",
+      "layers \u2ffb",
+      "rules \u2728"
+    ],
+    "matched": [
+      "panel",
+      "button"
+    ]
+  },
+  {
+    "number": 1090,
+    "title": "editing assistant rules causes loss of selected tiles",
+    "url": "https://github.com/deepnight/ldtk/issues/1090",
+    "labels": [
+      "bug \ud83e\udeb3",
+      "rules \u2728"
+    ],
+    "matched": [
+      "select"
+    ]
+  },
+  {
+    "number": 1088,
+    "title": "Build request - normal linux executable",
+    "url": "https://github.com/deepnight/ldtk/issues/1088",
+    "labels": [],
+    "matched": [
+      "ui",
+      "ux"
+    ]
+  },
+  {
+    "number": 1086,
+    "title": "Bug encountered when duplicating selection of tiles to another level",
+    "url": "https://github.com/deepnight/ldtk/issues/1086",
+    "labels": [],
+    "matched": [
+      "select"
+    ]
+  },
+  {
+    "number": 1084,
+    "title": "[Feature Request] Allow viewing custom command logs",
+    "url": "https://github.com/deepnight/ldtk/issues/1084",
+    "labels": [],
+    "matched": [
+      "view"
+    ]
+  },
+  {
+    "number": 1077,
+    "title": "[Bug] The entities editor window does not show its entire view in fullscreen mode or in windowed mode.",
+    "url": "https://github.com/deepnight/ldtk/issues/1077",
+    "labels": [],
+    "matched": [
+      "view"
+    ]
+  },
+  {
+    "number": 1075,
+    "title": "Minor visual: Zen mode tooltip missing bind",
+    "url": "https://github.com/deepnight/ldtk/issues/1075",
+    "labels": [],
+    "matched": [
+      "visual",
+      "tool"
+    ]
+  },
+  {
+    "number": 1072,
+    "title": "[Feature Request] Select and move multiple levels at once.",
+    "url": "https://github.com/deepnight/ldtk/issues/1072",
+    "labels": [],
+    "matched": [
+      "select"
+    ]
+  },
+  {
+    "number": 1071,
+    "title": "[Feature Request] Contour fill tool",
+    "url": "https://github.com/deepnight/ldtk/issues/1071",
+    "labels": [],
+    "matched": [
+      "tool"
+    ]
+  },
+  {
+    "number": 1070,
+    "title": "Crash when opening Rule with deleted tileset",
+    "url": "https://github.com/deepnight/ldtk/issues/1070",
+    "labels": [],
+    "matched": [
+      "crash"
+    ]
+  },
+  {
+    "number": 1069,
+    "title": "[Feature Request] Allow resizing left panel",
+    "url": "https://github.com/deepnight/ldtk/issues/1069",
+    "labels": [
+      "enhancement \ud83c\udd99",
+      "experimental \ud83e\uddea"
+    ],
+    "matched": [
+      "panel"
+    ]
+  },
+  {
+    "number": 1068,
+    "title": "[Feature Request/Bug] Selecting overlapping instances",
+    "url": "https://github.com/deepnight/ldtk/issues/1068",
+    "labels": [
+      "bug \ud83e\udeb3",
+      "rules \u2728"
+    ],
+    "matched": [
+      "select",
+      "overlap"
+    ]
+  },
+  {
+    "number": 1067,
+    "title": "[Bug] Selection dragging visual bug",
+    "url": "https://github.com/deepnight/ldtk/issues/1067",
+    "labels": [],
+    "matched": [
+      "drag",
+      "visual",
+      "select"
+    ]
+  },
+  {
+    "number": 1066,
+    "title": "[Feature Request] Better tile draw preview",
+    "url": "https://github.com/deepnight/ldtk/issues/1066",
+    "labels": [],
+    "matched": [
+      "view"
+    ]
+  },
+  {
+    "number": 1065,
+    "title": "[Feature Request] Better preview for changing BG color",
+    "url": "https://github.com/deepnight/ldtk/issues/1065",
+    "labels": [
+      "enhancement \ud83c\udd99"
+    ],
+    "matched": [
+      "view",
+      "color"
+    ]
+  },
+  {
+    "number": 1059,
+    "title": "Rightclick menu \"Disable Optional State\" and \"Turn into an Optional Group\" are reversed",
+    "url": "https://github.com/deepnight/ldtk/issues/1059",
+    "labels": [
+      "bug \ud83e\udeb3",
+      "rules \u2728"
+    ],
+    "matched": [
+      "menu",
+      "click"
+    ]
+  },
+  {
+    "number": 1056,
+    "title": "Missing level fields in World view for new values",
+    "url": "https://github.com/deepnight/ldtk/issues/1056",
+    "labels": [
+      "bug \ud83e\udeb3"
+    ],
+    "matched": [
+      "view"
+    ]
+  },
+  {
+    "number": 1053,
+    "title": "Cache smaller resolutions of Tileset images for use in UI",
+    "url": "https://github.com/deepnight/ldtk/issues/1053",
+    "labels": [
+      "experimental \ud83e\uddea",
+      "optimization / performance \ud83d\ude80"
+    ],
+    "matched": [
+      "ui"
+    ]
+  },
+  {
+    "number": 1033,
+    "title": "[Feature Request] Multiselecting tileset tiles to add custom definitions simultaneosly",
+    "url": "https://github.com/deepnight/ldtk/issues/1033",
+    "labels": [],
+    "matched": [
+      "select"
+    ]
+  },
+  {
+    "number": 1018,
+    "title": "Alpha setting for Color fields",
+    "url": "https://github.com/deepnight/ldtk/issues/1018",
+    "labels": [],
+    "matched": [
+      "color"
+    ]
+  },
+  {
+    "number": 1016,
+    "title": "[SUGGESTION] Coordinates in Gridvania View",
+    "url": "https://github.com/deepnight/ldtk/issues/1016",
+    "labels": [
+      "enhancement \ud83c\udd99",
+      "need info/testing \u2753"
+    ],
+    "matched": [
+      "view"
+    ]
+  },
+  {
+    "number": 1011,
+    "title": "Guided tours panel",
+    "url": "https://github.com/deepnight/ldtk/issues/1011",
+    "labels": [
+      "documentation \ud83d\udcd6",
+      "new feature \u2b50",
+      "experimental \ud83e\uddea"
+    ],
+    "matched": [
+      "ui",
+      "panel"
+    ]
+  },
+  {
+    "number": 994,
+    "title": "Show/hide enum tags color overlay toggle applies in exports (composite png for level, pngs for layers) not only in-editor",
+    "url": "https://github.com/deepnight/ldtk/issues/994",
+    "labels": [],
+    "matched": [
+      "color"
+    ]
+  },
+  {
+    "number": 993,
+    "title": "LDtk rendering [question]",
+    "url": "https://github.com/deepnight/ldtk/issues/993",
+    "labels": [
+      "discussion \ud83d\udcac"
+    ],
+    "matched": [
+      "render"
+    ]
+  },
+  {
+    "number": 971,
+    "title": "[Feature Request] Using selected entity's values as default values",
+    "url": "https://github.com/deepnight/ldtk/issues/971",
+    "labels": [],
+    "matched": [
+      "select"
+    ]
+  },
+  {
+    "number": 964,
+    "title": "Custom Command launching a .exe file on MacOS causes crash",
+    "url": "https://github.com/deepnight/ldtk/issues/964",
+    "labels": [
+      "bug \ud83e\udeb3",
+      "macOs \ud83c\udf4e"
+    ],
+    "matched": [
+      "crash"
+    ]
+  },
+  {
+    "number": 950,
+    "title": "Consider releasing aarch64 Linux builds",
+    "url": "https://github.com/deepnight/ldtk/issues/950",
+    "labels": [],
+    "matched": [
+      "ui",
+      "ux"
+    ]
+  },
+  {
+    "number": 936,
+    "title": "Suggestion for Linux release labeling...",
+    "url": "https://github.com/deepnight/ldtk/issues/936",
+    "labels": [],
+    "matched": [
+      "ux"
+    ]
+  },
+  {
+    "number": 929,
+    "title": "Cut and Paste Keyboard Shortcuts don't work on Mac",
+    "url": "https://github.com/deepnight/ldtk/issues/929",
+    "labels": [
+      "bug \ud83e\udeb3",
+      "macOs \ud83c\udf4e"
+    ],
+    "matched": [
+      "shortcut"
+    ]
+  },
+  {
+    "number": 873,
+    "title": "[Feature Request] Have option to view overlay of intgrid on top of auto-layers",
+    "url": "https://github.com/deepnight/ldtk/issues/873",
+    "labels": [
+      "layers \u2ffb"
+    ],
+    "matched": [
+      "view"
+    ]
+  },
+  {
+    "number": 862,
+    "title": "[Feature Requests] Allow customizing keyboard shortcuts",
+    "url": "https://github.com/deepnight/ldtk/issues/862",
+    "labels": [
+      "enhancement \ud83c\udd99"
+    ],
+    "matched": [
+      "shortcut"
+    ]
+  },
+  {
+    "number": 860,
+    "title": "Unable to move top most tile/entity, tool always moves everything",
+    "url": "https://github.com/deepnight/ldtk/issues/860",
+    "labels": [],
+    "matched": [
+      "tool"
+    ]
+  },
+  {
+    "number": 831,
+    "title": "[Bug] Crashes when saving large projects with separated levels back-to-back",
+    "url": "https://github.com/deepnight/ldtk/issues/831",
+    "labels": [
+      "bug \ud83e\udeb3",
+      "need info/testing \u2753"
+    ],
+    "matched": [
+      "crash"
+    ]
+  },
+  {
+    "number": 829,
+    "title": "[Feature Request] UID or IID in project's Default Level Identifier",
+    "url": "https://github.com/deepnight/ldtk/issues/829",
+    "labels": [],
+    "matched": [
+      "ui"
+    ]
+  },
+  {
+    "number": 824,
+    "title": "[Feature Request] add an option allow us use tileset for Rule Assistant quickly if they have exact same layout",
+    "url": "https://github.com/deepnight/ldtk/issues/824",
+    "labels": [
+      "enhancement \ud83c\udd99",
+      "experimental \ud83e\uddea",
+      "rules \u2728"
+    ],
+    "matched": [
+      "ui",
+      "layout"
+    ]
+  },
+  {
+    "number": 814,
+    "title": "[Feature Request] Customizable display label for entity references",
+    "url": "https://github.com/deepnight/ldtk/issues/814",
+    "labels": [
+      "enhancement \ud83c\udd99"
+    ],
+    "matched": [
+      "display"
+    ]
+  },
+  {
+    "number": 772,
+    "title": "Guidelines (PLEASE READ FIRST)",
+    "url": "https://github.com/deepnight/ldtk/issues/772",
+    "labels": [
+      "discussion \ud83d\udcac"
+    ],
+    "matched": [
+      "ui"
+    ]
+  },
+  {
+    "number": 768,
+    "title": "Rework of the Selection of level elements ",
+    "url": "https://github.com/deepnight/ldtk/issues/768",
+    "labels": [
+      "enhancement \ud83c\udd99",
+      "refacto \u2699",
+      "IMPORTANT \u26a0\ufe0f"
+    ],
+    "matched": [
+      "select"
+    ]
+  },
+  {
+    "number": 766,
+    "title": "[Feature Request] when an entity is selected, using UP/DOWN/LEFT/RIGHT to move its position with 1px directly",
+    "url": "https://github.com/deepnight/ldtk/issues/766",
+    "labels": [],
+    "matched": [
+      "select"
+    ]
+  },
+  {
+    "number": 760,
+    "title": "add a feature that allow user adjust the position of the separator between layer view and palette view",
+    "url": "https://github.com/deepnight/ldtk/issues/760",
+    "labels": [
+      "enhancement \ud83c\udd99"
+    ],
+    "matched": [
+      "view"
+    ]
+  },
+  {
+    "number": 745,
+    "title": "Consistent crashes while saving large projects too quickly after each other",
+    "url": "https://github.com/deepnight/ldtk/issues/745",
+    "labels": [
+      "bug \ud83e\udeb3"
+    ],
+    "matched": [
+      "ui",
+      "crash"
+    ]
+  },
+  {
+    "number": 725,
+    "title": "camera view preview?",
+    "url": "https://github.com/deepnight/ldtk/issues/725",
+    "labels": [],
+    "matched": [
+      "view"
+    ]
+  },
+  {
+    "number": 722,
+    "title": "Using Shift+Drag to select several entities, spawns a new enity",
+    "url": "https://github.com/deepnight/ldtk/issues/722",
+    "labels": [],
+    "matched": [
+      "drag",
+      "select"
+    ]
+  },
+  {
+    "number": 720,
+    "title": "Destroying enum casued crash when enum is used as a level field",
+    "url": "https://github.com/deepnight/ldtk/issues/720",
+    "labels": [
+      "bug \ud83e\udeb3",
+      "custom fields \u2630"
+    ],
+    "matched": [
+      "crash"
+    ]
+  },
+  {
+    "number": 718,
+    "title": "Duplicating a point crashes software",
+    "url": "https://github.com/deepnight/ldtk/issues/718",
+    "labels": [],
+    "matched": [
+      "crash"
+    ]
+  },
+  {
+    "number": 713,
+    "title": "[Suggestion] Preview icon and grid view for Integer grid layer",
+    "url": "https://github.com/deepnight/ldtk/issues/713",
+    "labels": [],
+    "matched": [
+      "view"
+    ]
+  },
+  {
+    "number": 712,
+    "title": "Copy selection between levels",
+    "url": "https://github.com/deepnight/ldtk/issues/712",
+    "labels": [],
+    "matched": [
+      "select"
+    ]
+  },
+  {
+    "number": 698,
+    "title": "[Suggestion] Toggle button screen to view enum markings overlaid on tiles in level editing screen",
+    "url": "https://github.com/deepnight/ldtk/issues/698",
+    "labels": [],
+    "matched": [
+      "view",
+      "button"
+    ]
+  },
+  {
+    "number": 696,
+    "title": "[Request] Add/create CONTRIBUTING.md file and guide for future contributors",
+    "url": "https://github.com/deepnight/ldtk/issues/696",
+    "labels": [],
+    "matched": [
+      "ui"
+    ]
+  },
+  {
+    "number": 691,
+    "title": "Entity layer offset values (visually) ignored by some things",
+    "url": "https://github.com/deepnight/ldtk/issues/691",
+    "labels": [],
+    "matched": [
+      "visual"
+    ]
+  }
+]

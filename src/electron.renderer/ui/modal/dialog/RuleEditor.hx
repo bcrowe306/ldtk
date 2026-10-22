@@ -41,6 +41,10 @@ class RuleEditor extends ui.modal.Dialog {
 		}
 		curValue = best;
 
+		// Validate current value exists in source layer
+		if( curValue>0 && !sourceDef.hasIntGridValue(curValue) && curValue<1000 )
+			curValue = -1;
+
 		// Default current value
 		if( curValue<0 )
 			for(iv in sourceDef.getAllIntGridValues()) {

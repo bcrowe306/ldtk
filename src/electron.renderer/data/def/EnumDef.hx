@@ -150,14 +150,15 @@ class EnumDef {
 		return ev;
 	}
 
-	public function removeValue(valueId:String) {
+	public function removeValue(valueId:String) : Bool {
+		var cleanId = !isExternal() && _project!=null ? Project.cleanupIdentifier(valueId, _project.identifierStyle) : valueId;
 		for(e in values)
-			if( e.id==valueId ) {
+			if( e.id==valueId || e.id==cleanId ) {
 				values.remove(e);
-				return;
+				return true;
 			}
 
-		throw "EnumDef value not found";
+		return false;
 	}
 
 	public function setValueTile(id:String, tileRect:ldtk.Json.TilesetRect) {
