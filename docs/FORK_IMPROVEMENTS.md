@@ -15,12 +15,14 @@ Configured in [.github/workflows/ci.yml](file:///Users/brandoncrowe/Documents/Gi
 
 | Target Platform | Package / Distribution | Runner | Output Artifact |
 |---|---|---|---|
-| **macOS (amd64)** | `.dmg` installer (x64) | `macos-13` | `macos_amd64` |
+| **macOS (arm64)** | `.dmg` installer (Apple Silicon native) | `macos-latest` | `macos_arm64` (`...installer-arm64.dmg`) |
+| **macOS (amd64)** | `.dmg` installer (Intel x64) | `macos-latest` | `macos_amd64` (`...installer-x64.dmg`) |
 | **Windows (win_64)** | `.exe` NSIS installer (x64) | `windows-latest` | `win_64` |
 | **Linux (AppImage)** | `.AppImage` (x64) | `ubuntu-latest` | `linux_appimage` |
 | **Linux (deb)** | `.deb` Debian package (x64) | `ubuntu-latest` | `linux_deb` |
 
 Packaging scripts configured in [app/package.json](file:///Users/brandoncrowe/Documents/Git/odin_raylib_engine/ldtk/app/package.json):
+- `npm run pack-macos-arm64`
 - `npm run pack-macos-amd64`
 - `npm run pack-win64`
 - `npm run pack-linux`

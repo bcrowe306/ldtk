@@ -24,6 +24,7 @@
 		"qt-rs": "quicktype -s schema ../docs/JSON_SCHEMA.json -o ../docs/quicktype/LdtkJson.rs --derive-clone --derive-debug --visibility public",
 		"qt-go": "quicktype -s schema ../docs/JSON_SCHEMA.json -o ../docs/quicktype/LdtkJson.go",
 		"qt-cpp": "quicktype -s schema ../docs/JSON_SCHEMA.json -o ../docs/quicktype/LdtkJson.cpp",
+		"pack-macos-arm64": "npm run pack-prepare  &&  electron-builder build --mac --arm64 --publish never",
 		"pack-macos-amd64": "npm run pack-prepare  &&  electron-builder build --mac --x64 --publish never",
 		"pack-win64": "npm run pack-prepare  &&  electron-builder build --win --x64 --publish never",
 		"pack-linux": "npm run pack-prepare  &&  electron-builder build --linux --x64 --publish never",

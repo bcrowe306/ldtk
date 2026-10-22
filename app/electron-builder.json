@@ -44,7 +44,9 @@
             "github"
         ]
     },
-    "mac": {},
+    "mac": {
+        "artifactName": "${productName} ${version} installer-${arch}.${ext}"
+    },
     "linux": {
         "target": [
             "AppImage",
