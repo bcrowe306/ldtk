@@ -85,3 +85,16 @@ All changes preserve 100% compatibility with existing LDtk JSON schema and file 
 - `353c9189`: `fix(ui): resolve stability issues (#1154, #1174, #1181, #1216, #1242, #1182, #1177, #1137, #1254)`
 - `91f5b5a3`: `fix(ui): resolve crashes in multi-world (#1129), entity deletion (#1233), killing layer (#1128), layer baking (#1155), mac zoom (#1119), and deleted tilesets (#1107)`
 - `80d44684`: `fix(ui): resolve enum null selection (#1252), missing layer crash (#1127), save path ENOTDIR (#1209), and tileset scrolling (#1173)`
+
+---
+
+## 6. Published Releases
+
+### Release `v1.5.3-fork.1`
+- **Release Page**: [`https://github.com/bcrowe306/ldtk/releases/tag/v1.5.3-fork.1`](https://github.com/bcrowe306/ldtk/releases/tag/v1.5.3-fork.1)
+- **Included Fixes**: 19 cataloged UI/UX, stability, multi-world, layer rule, and path resilience fixes across Batches 1, 2, and 3.
+- **Published Binaries**:
+  - **macOS (amd64)**: [`LDtk.1.5.3.installer.dmg`](https://github.com/bcrowe306/ldtk/releases/download/v1.5.3-fork.1/LDtk.1.5.3.installer.dmg) (103.59 MB)
+  - **Windows (win_64)**: [`LDtk.1.5.3.installer.exe`](https://github.com/bcrowe306/ldtk/releases/download/v1.5.3-fork.1/LDtk.1.5.3.installer.exe) (82.17 MB)
+  - **Linux (AppImage)**: [`LDtk.1.5.3.installer.AppImage`](https://github.com/bcrowe306/ldtk/releases/download/v1.5.3-fork.1/LDtk.1.5.3.installer.AppImage) (109.06 MB)
+  - **Linux (deb)**: [`LDtk.1.5.3.installer.deb`](https://github.com/bcrowe306/ldtk/releases/download/v1.5.3-fork.1/LDtk.1.5.3.installer.deb) (79.58 MB)
