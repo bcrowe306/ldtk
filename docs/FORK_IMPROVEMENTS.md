@@ -92,6 +92,20 @@ All changes preserve 100% compatibility with existing LDtk JSON schema and file 
 
 ## 6. Published Releases
 
+### Release `v1.5.3-fork.2` (Native macOS Apple Silicon arm64 + x64)
+- **Release Page**: [`https://github.com/bcrowe306/ldtk/releases/tag/v1.5.3-fork.2`](https://github.com/bcrowe306/ldtk/releases/tag/v1.5.3-fork.2)
+- **Included Enhancements**:
+  - Added native Apple Silicon **macOS arm64** installer build.
+  - Distinct DMG artifact names (`installer-arm64.dmg` vs `installer-x64.dmg`).
+  - Consolidated single-pass macOS builder avoiding runner queue concurrency bottlenecks.
+  - Complete multi-platform package suite with 19 UI/UX & stability fixes.
+- **Published Binaries**:
+  - **macOS (arm64 Apple Silicon)**: [`LDtk.1.5.3.installer-arm64.dmg`](https://github.com/bcrowe306/ldtk/releases/download/v1.5.3-fork.2/LDtk.1.5.3.installer-arm64.dmg) (100.05 MB)
+  - **macOS (amd64 / x64 Intel)**: [`LDtk.1.5.3.installer-x64.dmg`](https://github.com/bcrowe306/ldtk/releases/download/v1.5.3-fork.2/LDtk.1.5.3.installer-x64.dmg) (103.59 MB)
+  - **Windows (win_64)**: [`LDtk.1.5.3.installer.exe`](https://github.com/bcrowe306/ldtk/releases/download/v1.5.3-fork.2/LDtk.1.5.3.installer.exe) (82.17 MB)
+  - **Linux (AppImage)**: [`LDtk.1.5.3.installer.AppImage`](https://github.com/bcrowe306/ldtk/releases/download/v1.5.3-fork.2/LDtk.1.5.3.installer.AppImage) (109.06 MB)
+  - **Linux (deb)**: [`LDtk.1.5.3.installer.deb`](https://github.com/bcrowe306/ldtk/releases/download/v1.5.3-fork.2/LDtk.1.5.3.installer.deb) (79.59 MB)
+
 ### Release `v1.5.3-fork.1`
 - **Release Page**: [`https://github.com/bcrowe306/ldtk/releases/tag/v1.5.3-fork.1`](https://github.com/bcrowe306/ldtk/releases/tag/v1.5.3-fork.1)
 - **Included Fixes**: 19 cataloged UI/UX, stability, multi-world, layer rule, and path resilience fixes across Batches 1, 2, and 3.
