@@ -50,6 +50,7 @@
             "AppImage",
             "deb"
         ],
-        "category": "Development"
+        "category": "Development",
+        "maintainer": "LDtk <contact@ldtk.io>"
     }
 }

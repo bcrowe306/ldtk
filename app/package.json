@@ -3,7 +3,7 @@
 	"version": "1.5.3",
 	"main": "assets/main.js",
 	"productName": "LDtk",
-	"author": "Sebastien Benard",
+	"author": { "name": "Sebastien Benard", "email": "contact@ldtk.io" },
 	"description": "2D level editor",
 	"scripts": {
 		"start": "electron .",
