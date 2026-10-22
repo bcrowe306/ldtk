@@ -1,6 +1,7 @@
 {
     "appId": "com.deepnight.ldtk",
     "artifactName": "${productName} ${version} installer.${ext}",
+    "afterPack": "./scripts/afterPackSign.js",
     "directories": {
         "buildResources": "buildAssets",
         "output": "redist"

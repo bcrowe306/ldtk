@@ -41,6 +41,84 @@ jobs:
       - name: Build macOS (arm64 & x64)
         run: cd app && npm run pack-macos
 
+      - name: Test Installing and Opening macOS Applications
+        run: |
+          set -e
+          RUNNER_ARCH=$(uname -m)
+          echo "Runner architecture: $RUNNER_ARCH"
+
+          for dmg in app/redist/*.dmg; do
+            echo "=========================================="
+            echo "Testing DMG: $dmg"
+            echo "=========================================="
+            
+            MOUNT_DIR=$(mktemp -d)
+            echo "Attaching $dmg to $MOUNT_DIR..."
+            hdiutil attach "$dmg" -mountpoint "$MOUNT_DIR" -nobrowse -quiet
+            
+            APP_PATH=$(find "$MOUNT_DIR" -maxdepth 2 -name "*.app" -print -quit)
+            if [ -z "$APP_PATH" ] || [ ! -d "$APP_PATH" ]; then
+              echo "Error: No .app bundle found in $dmg"
+              hdiutil detach "$MOUNT_DIR" -force
+              exit 1
+            fi
+            echo "Found bundle: $APP_PATH"
+            
+            echo "--> Verifying code signature & sealed resources in DMG..."
+            codesign --verify --deep --strict --verbose=2 "$APP_PATH"
+            
+            TEST_INSTALL_DIR=$(mktemp -d)
+            echo "--> Testing installation (copying to $TEST_INSTALL_DIR)..."
+            cp -R "$APP_PATH" "$TEST_INSTALL_DIR/"
+            
+            echo "Detaching DMG..."
+            hdiutil detach "$MOUNT_DIR" -force
+            
+            INSTALLED_APP="$TEST_INSTALL_DIR/$(basename "$APP_PATH")"
+            echo "--> Verifying installed application signature..."
+            codesign --verify --deep --strict --verbose=2 "$INSTALLED_APP"
+            
+            # Determine DMG architecture
+            DMG_ARCH="unknown"
+            if [[ "$dmg" == *"arm64"* ]]; then
+              DMG_ARCH="arm64"
+            elif [[ "$dmg" == *"x64"* ]] || [[ "$dmg" == *"amd64"* ]]; then
+              DMG_ARCH="x86_64"
+            fi
+            echo "DMG Arch: $DMG_ARCH, Runner Arch: $RUNNER_ARCH"
+            
+            # If native architecture or Rosetta is available, test opening the application
+            CAN_RUN=false
+            if [ "$RUNNER_ARCH" = "$DMG_ARCH" ] || [ "$DMG_ARCH" = "unknown" ]; then
+              CAN_RUN=true
+            elif [ "$RUNNER_ARCH" = "arm64" ] && [ "$DMG_ARCH" = "x86_64" ]; then
+              if /usr/bin/pgrep oahd >/dev/null 2>&1 || [ -f "/Library/Apple/usr/libexec/oah/libRosettaRuntime" ]; then
+                CAN_RUN=true
+              fi
+            fi
+
+            if [ "$CAN_RUN" = true ]; then
+              echo "--> Testing opening installed application via LaunchServices..."
+              open -n "$INSTALLED_APP"
+              sleep 4
+              
+              # Verify application process is alive and didn't crash on start
+              APP_PID=$(pgrep -f "$INSTALLED_APP" || pgrep -f "LDtk" || true)
+              if [ -n "$APP_PID" ]; then
+                echo "SUCCESS: LDtk is running cleanly with PID(s): $APP_PID"
+                killall -9 LDtk 2>/dev/null || true
+              else
+                echo "ERROR: LDtk failed to launch or crashed on startup!"
+                exit 1
+              fi
+            else
+              echo "Skipping execution test for $DMG_ARCH on $RUNNER_ARCH runner."
+            fi
+            
+            rm -rf "$TEST_INSTALL_DIR"
+            echo "Verification passed for $dmg!"
+          done
+
       - name: Upload macOS Artifacts
         uses: actions/upload-artifact@v4
         with:
