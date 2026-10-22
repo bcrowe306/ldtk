@@ -312,6 +312,14 @@ class EntityDef {
 			tilesetId = null;
 			renderMode = Rectangle;
 		}
+		if( tileRect!=null && p.defs.getTilesetDef(tileRect.tilesetUid)==null ) {
+			App.LOG.add("tidy", 'Removed lost tileRect tileset of $this');
+			tileRect = null;
+		}
+		if( uiTileRect!=null && p.defs.getTilesetDef(uiTileRect.tilesetUid)==null ) {
+			App.LOG.add("tidy", 'Removed lost uiTileRect tileset of $this');
+			uiTileRect = null;
+		}
 
 		// Field defs
 		Definitions.tidyFieldDefsArray(p, fieldDefs, this.toString());

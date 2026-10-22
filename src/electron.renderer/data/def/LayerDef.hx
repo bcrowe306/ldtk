@@ -679,6 +679,26 @@ class LayerDef {
 		if( autoSourceLayerDefUid!=null && p.defs.getLayerDef(autoSourceLayerDefUid)==null )
 			autoSourceLayerDefUid = null;
 
+		// Lost killing layer
+		if( autoTilesKilledByOtherLayerUid!=null && p.defs.getLayerDef(autoTilesKilledByOtherLayerUid)==null ) {
+			App.LOG.add("tidy", 'Removed lost killing layer in '+this);
+			autoTilesKilledByOtherLayerUid = null;
+		}
+
+		// Lost tileset in IntGrid values
+		for(iv in intGridValues)
+			if( iv.tile!=null && p.defs.getTilesetDef(iv.tile.tilesetUid)==null ) {
+				App.LOG.add("tidy", 'Removed lost tileset in IntGrid value '+iv.identifier+' in '+this);
+				iv.tile = null;
+			}
+
+		// Lost tileset in rule group icons
+		for(rg in autoRuleGroups)
+			if( rg.icon!=null && p.defs.getTilesetDef(rg.icon.tilesetUid)==null ) {
+				App.LOG.add("tidy", 'Removed lost tileset in rule group icon '+rg.name+' in '+this);
+				rg.icon = null;
+			}
+
 		// Lost biome field
 		if( biomeFieldUid!=null && getBiomeEnumDef()==null ) {
 			App.LOG.add("tidy", 'Removed lost biome field in $this');

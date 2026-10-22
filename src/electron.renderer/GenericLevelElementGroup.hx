@@ -57,8 +57,8 @@ class GenericLevelElementGroup {
 		elements = null;
 	}
 
-	public inline function isEmpty() return elements.length==0 && originalRects.length==0;
-	public inline function selectedElementsCount() return elements.length;
+	public inline function isEmpty() return elements==null || ( elements.length==0 && (originalRects==null || originalRects.length==0) );
+	public inline function selectedElementsCount() return elements==null ? 0 : elements.length;
 	public inline function allElements() return elements;
 	public inline function getElement(idx:Int) return elements[idx];
 
@@ -572,6 +572,9 @@ class GenericLevelElementGroup {
 
 
 	public function isOveringSelection(m:Coords) {
+		if( elements==null || originalRects==null )
+			return false;
+
 		for(ge in elements) {
 			switch ge {
 				case GridCell(li, cx, cy):

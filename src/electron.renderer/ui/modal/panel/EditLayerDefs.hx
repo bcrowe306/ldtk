@@ -118,7 +118,6 @@ class EditLayerDefs extends ui.modal.Panel {
 		newLd.tilesetDefUid = ld.tilesetDefUid;
 
 		// Update layer instances
-		var td = project.defs.getTilesetDef(newLd.tilesetDefUid);
 		var ops : Array<ui.modal.Progress.ProgressOp> = [];
 		for(w in project.worlds)
 		for(l in w.levels) {
@@ -127,8 +126,13 @@ class EditLayerDefs extends ui.modal.Panel {
 			ops.push({
 				label: l.identifier,
 				cb: ()->{
-					ld.iterateActiveRulesInDisplayOrder( newLi, (r)->{ // TODO not sure which "li" should be used here
-						if( sourceLi.autoTilesCache.exists( r.uid ) ) {
+					if( sourceLi.getTilesetUid()!=ld.tilesetDefUid && sourceLi.getTilesetUid()!=null )
+						newLi.setOverrideTileset(sourceLi.getTilesetUid());
+					var td = newLi.getTilesetDef();
+					if( td==null )
+						td = project.defs.getTilesetDef(newLd.tilesetDefUid);
+					ld.iterateActiveRulesInDisplayOrder( newLi, (r)->{
+						if( sourceLi.autoTilesCache!=null && sourceLi.autoTilesCache.exists( r.uid ) ) {
 							for( allTiles in sourceLi.autoTilesCache.get( r.uid ).keyValueIterator() )
 							for( tileInfos in allTiles.value ) {
 								newLi.addGridTile(
@@ -136,7 +140,7 @@ class EditLayerDefs extends ui.modal.Panel {
 									Std.int(tileInfos.y/ld.gridSize),
 									tileInfos.tid,
 									tileInfos.flips,
-									!td.isTileOpaque(tileInfos.tid),
+									td!=null ? !td.isTileOpaque(tileInfos.tid) : false,
 									false
 								);
 							}

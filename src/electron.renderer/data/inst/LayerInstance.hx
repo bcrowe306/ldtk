@@ -887,7 +887,7 @@ class LayerInstance {
 	}
 
 	inline function isAutoTileCellAllowed(cx:Int, cy:Int) {
-		if( def.autoTilesKilledByOtherLayerUid==null )
+		if( def.autoTilesKilledByOtherLayerUid==null || !level.hasLayerInstance(def.autoTilesKilledByOtherLayerUid) )
 			return true;
 		else
 			return !level.getLayerInstance(def.autoTilesKilledByOtherLayerUid).hasAnyGridTile(cx,cy);

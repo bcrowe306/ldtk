@@ -240,5 +240,10 @@ class EnumDef {
 			iconTilesetUid = null;
 			clearAllTileIds();
 		}
+		for(v in values)
+			if( v.tileRect!=null && p.defs.getTilesetDef(v.tileRect.tilesetUid)==null ) {
+				App.LOG.add("tidy", 'Removed lost tileset in enum value '+v.id+' in '+this);
+				v.tileRect = null;
+			}
 	}
 }

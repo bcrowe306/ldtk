@@ -553,6 +553,15 @@ class Editor extends Page {
 		super.onKeyPress(keyCode);
 
 		switch keyCode {
+			// Zoom keyboard shortcuts
+			case K.NUMPAD_ADD, K.QWERTY_EQUALS:
+				if( !hasInputFocus() )
+					deltaZoom( 1.0, Coords.fromLevelCoords(camera.levelX,camera.levelY) );
+
+			case K.NUMPAD_SUB, K.QWERTY_MINUS:
+				if( !hasInputFocus() )
+					deltaZoom( -1.0, Coords.fromLevelCoords(camera.levelX,camera.levelY) );
+
 			// Select layers (numbers 1-9-0)
 			case k if( k>=48 && k<=57 && !hasInputFocus() ):
 				var idx = k==48 ? 9 : k-49;
@@ -1359,7 +1368,10 @@ class Editor extends Page {
 		invalidateCachedLevelErrors();
 
 		ge.emit( WorldSelected(w) );
-		selectLevel(w.levels[0]);
+		if( w.levels.length>0 )
+			selectLevel(w.levels[0]);
+		else
+			curLevelId = -1;
 
 		if( showUp ) {
 			N.quick("World: "+w.identifier);
@@ -1371,7 +1383,10 @@ class Editor extends Page {
 	}
 
 
-	public function selectLevel(l:data.Level, fitView=false) {
+	public function selectLevel(l:Null<data.Level>, fitView=false) {
+		if( l==null )
+			return;
+
 		if( curTool.isRunning() )
 			curTool.stopUsing(getMouse());
 
@@ -2960,14 +2975,7 @@ class Editor extends Page {
 			cursor.onMouseMove( getMouse() );
 
 
-		// Zoom keyboard shortcuts
-		if( App.ME.focused && !App.ME.hasInputFocus() ) {
-			if( App.ME.isKeyDown(K.NUMPAD_ADD) || App.ME.isKeyDown(K.QWERTY_EQUALS) )
-				deltaZoom(0.45*tmod, Coords.fromLevelCoords(camera.levelX,camera.levelY) );
 
-			if( App.ME.isKeyDown(K.NUMPAD_SUB) || App.ME.isKeyDown(K.QWERTY_MINUS) )
-				deltaZoom(-0.45*tmod, Coords.fromLevelCoords(camera.levelX,camera.levelY) );
-		}
 
 		// DOM locking
 		if( isLocked()!=wasLocked ) {

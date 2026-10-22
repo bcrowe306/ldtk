@@ -113,9 +113,78 @@ async function testFixes() {
             throw new Error('FieldInstance setEntityRefTo assertion failed: ' + JSON.stringify(fieldNullGuardRes));
         }
 
+        // Test 6: Test GenericLevelElementGroup null resilience (#1233)
+        const elementGroupRes = await driver.eval(`
+            (() => {
+                try {
+                    const group = window.editor.selectionTool.group;
+                    const empty = group.isEmpty();
+                    const count = group.selectedElementsCount();
+                    const coords = { cx: 0, cy: 0, levelX: 0, levelY: 0, worldX: 0, worldY: 0 };
+                    const overing = group.isOveringSelection(coords);
+                    return { success: empty === true && count === 0 && overing === false };
+                } catch(e) {
+                    return { error: e.message, stack: e.stack };
+                }
+            })()
+        `);
+        console.log('[E2E Test] #1233 GenericLevelElementGroup safety test:', elementGroupRes);
+        if (elementGroupRes.error || !elementGroupRes.success) {
+            throw new Error('GenericLevelElementGroup assertion failed: ' + JSON.stringify(elementGroupRes));
+        }
+
+        // Test 7: Test selectLevel(null) resilience (#1129)
+        const selectLevelNullRes = await driver.eval(`
+            (() => {
+                try {
+                    window.editor.selectLevel(null);
+                    return { success: true };
+                } catch(e) {
+                    return { error: e.message, stack: e.stack };
+                }
+            })()
+        `);
+        console.log('[E2E Test] #1129 selectLevel(null) resilience test:', selectLevelNullRes);
+        if (selectLevelNullRes.error || !selectLevelNullRes.success) {
+            throw new Error('selectLevel(null) assertion failed: ' + JSON.stringify(selectLevelNullRes));
+        }
+
+        // Test 8: Test tidy cleanup for deleted tileset in LayerDef & EntityDef (#1107, #1128)
+        const tidyCleanupRes = await driver.eval(`
+            (() => {
+                try {
+                    const ed = window.editor;
+                    const ld = ed.project.defs.layers[0];
+                    if (ld) {
+                        ld.autoTilesKilledByOtherLayerUid = 999999;
+                        ld.tidy(ed.project);
+                        if (ld.autoTilesKilledByOtherLayerUid !== null) {
+                            return { success: false, reason: "autoTilesKilledByOtherLayerUid was not cleaned" };
+                        }
+                    }
+                    const ent = ed.project.defs.entities[0];
+                    if (ent) {
+                        ent.tileRect = { tilesetUid: 999999, x: 0, y: 0, w: 16, h: 16 };
+                        ent.uiTileRect = { tilesetUid: 999999, x: 0, y: 0, w: 16, h: 16 };
+                        ent.tidy(ed.project);
+                        if (ent.tileRect !== null || ent.uiTileRect !== null) {
+                            return { success: false, reason: "ent.tileRect/uiTileRect was not cleaned" };
+                        }
+                    }
+                    return { success: true };
+                } catch(e) {
+                    return { error: e.message, stack: e.stack };
+                }
+            })()
+        `);
+        console.log('[E2E Test] #1107 & #1128 tidy cleanup test:', tidyCleanupRes);
+        if (tidyCleanupRes.error || !tidyCleanupRes.success) {
+            throw new Error('tidy cleanup assertion failed: ' + JSON.stringify(tidyCleanupRes));
+        }
+
         // Capture verification screenshot
-        await driver.captureScreenshot(path.resolve(__dirname, 'batch1_verified.png'));
-        console.log('[E2E Test] All batch 1 bug fix tests passed successfully!');
+        await driver.captureScreenshot(path.resolve(__dirname, 'batch2_verified.png'));
+        console.log('[E2E Test] All batch 1 and 2 bug fix tests passed successfully!');
     } catch(err) {
         console.error('[E2E Test] Test failed:', err);
         process.exitCode = 1;
