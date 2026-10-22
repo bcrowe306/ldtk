@@ -43,10 +43,11 @@ To enable automated testing, inspection, and screenshot verification directly on
 
 ---
 
-## 4. Triage & First Batch of Bug Fixes (Committed & Pushed)
+## 4. Cataloged Bug Fixes (Committed, Pushed, & Verified)
 
-All changes preserve 100% compatibility with existing LDtk JSON schema and file format.
+All changes preserve 100% compatibility with existing LDtk JSON schema and file format (`docs/JSON_SCHEMA.json`).
 
+### Batch 1 Fixes (`commit 353c9189`)
 | Issue | Title / Symptom | Root Cause | Fix Applied | Status |
 |---|---|---|---|---|
 | **#1154** | RulePatternEditor crashes reading 'addClass' on null tile image | `Project.resolveTileRectAsHtmlImg` returns null when a tile image or tileset reference is invalid; `jImg.addClass()` was called directly on null. | Guarded tile image creation and added null-check before `addClass("valueIcon")` in [RulePatternEditor.hx](file:///Users/brandoncrowe/Documents/Git/odin_raylib_engine/ldtk/src/electron.renderer/ui/RulePatternEditor.hx). | **Fixed & Verified** |
@@ -59,8 +60,28 @@ All changes preserve 100% compatibility with existing LDtk JSON schema and file 
 | **#1137** | Dragging item in long lists auto-scrolls uncontrollably | `SortableJS` options had `scrollSensitivity: 140` and `scrollSpeed: 40`, triggering high-speed scrolling even when the cursor was far from container edges. | Adjusted to smooth, responsive values (`scrollSensitivity: 50`, `scrollSpeed: 15`) in [JsTools.hx](file:///Users/brandoncrowe/Documents/Git/odin_raylib_engine/ldtk/src/electron.renderer/misc/JsTools.hx). | **Fixed & Verified** |
 | **#1254** / **#1217** | Linux AppImage startup crash | Unprivileged user namespaces are disabled by default on modern Linux distros (Ubuntu 24.04+, KDE neon, Debian 12+), requiring `--no-sandbox`. | Added automatic `--no-sandbox` fallback on Linux in [ElectronMain.hx](file:///Users/brandoncrowe/Documents/Git/odin_raylib_engine/ldtk/src/electron.main/ElectronMain.hx). | **Fixed & Verified** |
 
+### Batch 2 Fixes (`commit 91f5b5a3`)
+| Issue | Title / Symptom | Root Cause | Fix Applied | Status |
+|---|---|---|---|---|
+| **#1129** | Crash moving single level from one world to another in multi-world project | `Editor.selectWorld` called `selectLevel(w.levels[0])` without checking if `w.levels.length > 0`, and `selectLevel` crashed accessing fields on undefined level. | Guarded world levels length and added null check in `selectLevel` in [Editor.hx](file:///Users/brandoncrowe/Documents/Git/odin_raylib_engine/ldtk/src/electron.renderer/page/Editor.hx). | **Fixed & Verified** |
+| **#1233** | Program crash while deleting entities/elements | When selection tool was cleared or elements disposed, `GenericLevelElementGroup` methods `isOveringSelection`, `isEmpty`, and `selectedElementsCount` crashed on null array. | Added guards against null `elements` and null `originalRects` in [GenericLevelElementGroup.hx](file:///Users/brandoncrowe/Documents/Git/odin_raylib_engine/ldtk/src/electron.renderer/GenericLevelElementGroup.hx). | **Fixed & Verified** |
+| **#1128** | "autoTilesKilledByOtherLayerUid" not cleared in existing layers after another layer deleted | When a killing layer was deleted, dependent layers retained stale UID references, causing `Missing layer instance` crashes during rule evaluation. | Added tidy cleanup in [LayerDef.hx](file:///Users/brandoncrowe/Documents/Git/odin_raylib_engine/ldtk/src/electron.renderer/data/def/LayerDef.hx) and guarded against missing killing layers in [LayerInstance.hx](file:///Users/brandoncrowe/Documents/Git/odin_raylib_engine/ldtk/src/electron.renderer/data/inst/LayerInstance.hx). | **Fixed & Verified** |
+| **#1155** | Bake Layer ignores selected tileset | Baking auto-layers reset tileset definition to default instead of preserving overridden layer instance tilesets. | Preserved `overrideTilesetUid` and retrieved active tileset def during baking in [EditLayerDefs.hx](file:///Users/brandoncrowe/Documents/Git/odin_raylib_engine/ldtk/src/electron.renderer/ui/modal/panel/EditLayerDefs.hx). | **Fixed & Verified** |
+| **#1119** | Mac trackpad / keyboard zoom runs continuously on key hold | Zoom shortcuts were evaluated per-frame in `update()` rather than on key press events, causing instant runaway zoom on macOS. | Moved zoom keyboard shortcuts to `onKeyPress` step handling in [Editor.hx](file:///Users/brandoncrowe/Documents/Git/odin_raylib_engine/ldtk/src/electron.renderer/page/Editor.hx). | **Fixed & Verified** |
+| **#1107** | Deleting tileset leaves stale references in EntityDef and EnumDef | Deleting a tileset used by entity `tileRect` or enum value `tileRect` left dangling references. | Added tidy cleanup for `tileRect`, `uiTileRect`, and enum value `tileRect` in [EntityDef.hx](file:///Users/brandoncrowe/Documents/Git/odin_raylib_engine/ldtk/src/electron.renderer/data/def/EntityDef.hx) and [EnumDef.hx](file:///Users/brandoncrowe/Documents/Git/odin_raylib_engine/ldtk/src/electron.renderer/data/def/EnumDef.hx). | **Fixed & Verified** |
+
+### Batch 3 Fixes (`commit 80d44684`)
+| Issue | Title / Symptom | Root Cause | Fix Applied | Status |
+|---|---|---|---|---|
+| **#1252** | Cant select null as enum value if default value is not null | Setting an enum instance to null called `parseValue(arrayIdx, null)`, which cleared the override to "use default", immediately reverting the value to the default option. | Added `V_Null` to `ValueWrapper` in [DataTypes.hx](file:///Users/brandoncrowe/Documents/Git/odin_raylib_engine/ldtk/src/electron.renderer/data/DataTypes.hx), added `setExplicitNull` in [FieldInstance.hx](file:///Users/brandoncrowe/Documents/Git/odin_raylib_engine/ldtk/src/electron.renderer/data/inst/FieldInstance.hx), and differentiated `_null` vs `_default` in [FieldInstancesForm.hx](file:///Users/brandoncrowe/Documents/Git/odin_raylib_engine/ldtk/src/electron.renderer/ui/FieldInstancesForm.hx). | **Fixed & Verified** |
+| **#1127** | Crash when trying to toggle autolayer on and off with Shift+R | `Level.getLayerInstance(uid)` threw an uncaught exception when an auto-layer source layer was missing, crashing `AutoLayerRenderingChanged` handling. | Made `Level.getLayerInstance` return `null` safely in [Level.hx](file:///Users/brandoncrowe/Documents/Git/odin_raylib_engine/ldtk/src/electron.renderer/data/Level.hx), guarded missing sources in [LayerInstance.hx](file:///Users/brandoncrowe/Documents/Git/odin_raylib_engine/ldtk/src/electron.renderer/data/inst/LayerInstance.hx), and guarded null layers in [LevelRender.hx](file:///Users/brandoncrowe/Documents/Git/odin_raylib_engine/ldtk/src/electron.renderer/display/LevelRender.hx). | **Fixed & Verified** |
+| **#1209** | Crash `ENOTDIR: not a directory, mkdir .../simplified` when saving without extension | Saving a project without typing `.ldtk` created a regular file with the same name as `getAbsExternalFilesDir()`, causing subdirectory creation to throw `ENOTDIR`. | Automatically ensured `Const.FILE_EXTENSION` in [Editor.hx](file:///Users/brandoncrowe/Documents/Git/odin_raylib_engine/ldtk/src/electron.renderer/page/Editor.hx) and added `_data` fallback in [Project.hx](file:///Users/brandoncrowe/Documents/Git/odin_raylib_engine/ldtk/src/electron.renderer/data/Project.hx). | **Fixed & Verified** |
+| **#1173** | Cannot scroll large tilesets on Mac / trackpad | `Tileset.onPickerMouseWheel` treated all wheel events as zoom and did nothing if `viewFitted`, preventing trackpad and wheel panning. | Differentiated pan vs zoom in [Tileset.hx](file:///Users/brandoncrowe/Documents/Git/odin_raylib_engine/ldtk/src/electron.renderer/ui/Tileset.hx): standard wheel/trackpad scrolling smoothly pans `scrollX`/`scrollY` and un-fits view as needed, while Ctrl/Cmd/pinch zooms. | **Fixed & Verified** |
+
 ---
 
 ## 5. Commits Pushed to Fork
 - `e2c5d53a`: `ci: add multi-platform builds and e2e test hook`
 - `353c9189`: `fix(ui): resolve stability issues (#1154, #1174, #1181, #1216, #1242, #1182, #1177, #1137, #1254)`
+- `91f5b5a3`: `fix(ui): resolve crashes in multi-world (#1129), entity deletion (#1233), killing layer (#1128), layer baking (#1155), mac zoom (#1119), and deleted tilesets (#1107)`
+- `80d44684`: `fix(ui): resolve enum null selection (#1252), missing layer crash (#1127), save path ENOTDIR (#1209), and tileset scrolling (#1173)`
