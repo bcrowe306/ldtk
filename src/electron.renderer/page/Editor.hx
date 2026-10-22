@@ -1870,7 +1870,10 @@ class Editor extends Page {
 			var oldDir = project.getProjectDir();
 
 			dn.js.ElectronDialogs.saveFileAs(["."+Const.FILE_EXTENSION, ".json"], project.getProjectDir(), function(filePath:String) {
-				project.filePath.parseFilePath( filePath );
+				var fp = dn.FilePath.fromFile(filePath);
+				if( fp.extension==null || fp.extension.length==0 )
+					fp.extension = Const.FILE_EXTENSION;
+				project.filePath.parseFilePath( fp.full );
 				var newDir = project.getProjectDir();
 				App.LOG.fileOp("Remap project paths: "+oldDir+" => "+newDir);
 				project.remapAllRelativePaths(oldDir, newDir);

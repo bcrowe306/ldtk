@@ -1082,7 +1082,7 @@ class LayerInstance {
 			return;
 		}
 
-		var source = def.type==IntGrid ? this : def.autoSourceLayerDefUid!=null ? level.getLayerInstance(def.autoSourceLayerDefUid) : null;
+		var source = def.type==IntGrid ? this : (def.autoSourceLayerDefUid!=null && level.hasLayerInstance(def.autoSourceLayerDefUid)) ? level.getLayerInstance(def.autoSourceLayerDefUid) : null;
 		if( source==null ) {
 			clearAllAutoTilesCache();
 			return;
@@ -1132,7 +1132,7 @@ class LayerInstance {
 			return;
 		}
 
-		var source = def.type==IntGrid ? this : def.autoSourceLayerDefUid!=null ? level.getLayerInstance(def.autoSourceLayerDefUid) : null;
+		var source = def.type==IntGrid ? this : (def.autoSourceLayerDefUid!=null && level.hasLayerInstance(def.autoSourceLayerDefUid)) ? level.getLayerInstance(def.autoSourceLayerDefUid) : null;
 		if( source==null || !r.isRelevantInLayer(source) )
 			return;
 

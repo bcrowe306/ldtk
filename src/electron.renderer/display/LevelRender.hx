@@ -600,7 +600,9 @@ class LevelRender extends dn.Process {
 	}
 
 
-	function renderLayer(li:data.inst.LayerInstance) {
+	function renderLayer(li:Null<data.inst.LayerInstance>) {
+		if( li==null )
+			return;
 		layerInvalidations.remove(li.layerDefUid);
 
 		if( !layerRenders.exists(li.layerDefUid) ) {
@@ -655,6 +657,8 @@ class LevelRender extends dn.Process {
 	public inline function invalidateLayer(?li:data.inst.LayerInstance, ?layerDefUid:Int, evaluateRules=true) {
 		if( li==null )
 			li = editor.curLevel.getLayerInstance(layerDefUid);
+		if( li==null )
+			return;
 		layerInvalidations.set( li.layerDefUid, { evaluateRules:evaluateRules, left:0, right:li.cWid-1, top:0, bottom:li.cHei-1 } );
 
 		if( li.def.type==IntGrid )

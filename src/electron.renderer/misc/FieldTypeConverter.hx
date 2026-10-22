@@ -49,14 +49,14 @@ class FieldTypeConverter {
 		{
 			from:F_Int, to:F_Float, lossless:true,
 			convertInst:(fi,i)->{
-				fi.internalValues[i] = fi.isUsingDefault(i) ? null : V_Float( fi.getInt(i) );
+				fi.internalValues[i] = fi.isUsingDefault(i) ? null : (fi.internalValues[i]==V_Null ? V_Null : V_Float( fi.getInt(i) ));
 			},
 		},
 
 		{
 			from:F_Bool, to:F_Int, lossless:true,
 			convertInst:(fi,i)->{
-				fi.internalValues[i] = fi.isUsingDefault(i) ? null : V_Int( fi.getBool(i) ? 1 : 0 );
+				fi.internalValues[i] = fi.isUsingDefault(i) ? null : (fi.internalValues[i]==V_Null ? V_Null : V_Int( fi.getBool(i) ? 1 : 0 ));
 			},
 			convertDef: (fd)->{
 				fd.defaultOverride = V_Int( fd.getBoolDefault()==true ? 1 : 0 );
@@ -66,7 +66,7 @@ class FieldTypeConverter {
 		{
 			from:F_Float, to:F_Int, mode:"Truncate", lossless:false,
 			convertInst:(fi,i)->{
-				fi.internalValues[i] = fi.isUsingDefault(i) ? null : V_Int( Std.int( fi.getFloat(i) ) );
+				fi.internalValues[i] = fi.isUsingDefault(i) ? null : (fi.internalValues[i]==V_Null ? V_Null : V_Int( Std.int( fi.getFloat(i) ) ));
 			},
 			convertDef: (fd)->{
 				if( fd.min!=null ) fd.min = Std.int( fd.min );
@@ -78,7 +78,7 @@ class FieldTypeConverter {
 		{
 			from:F_Float, to:F_Int, mode:"Round", lossless:false,
 			convertInst:(fi,i)->{
-				fi.internalValues[i] = fi.isUsingDefault(i) ? null : V_Int( M.round( fi.getFloat(i) ) );
+				fi.internalValues[i] = fi.isUsingDefault(i) ? null : (fi.internalValues[i]==V_Null ? V_Null : V_Int( M.round( fi.getFloat(i) ) ));
 			},
 			convertDef: (fd)->{
 				if( fd.min!=null ) fd.min = M.round( fd.min );

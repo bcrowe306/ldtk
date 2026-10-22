@@ -74,7 +74,7 @@ class FieldInstance {
 			defUid: defUid,
 			realEditorValues: internalValues.map( (e)->{
 				return cast switch e {
-					case null, V_Int(_), V_Float(_), V_Bool(_):
+					case null, V_Null, V_Int(_), V_Float(_), V_Bool(_):
 						JsonTools.writeEnum(e,true);
 
 					case V_String(v):
@@ -138,6 +138,10 @@ class FieldInstance {
 		internalValues[arrayIdx] = fv;
 	}
 
+	public function setExplicitNull(arrayIdx:Int) {
+		setInternal(arrayIdx, V_Null);
+	}
+
 	public function isUsingDefault(arrayIdx:Int) {
 		return internalValues[arrayIdx]==null;
 	}
@@ -145,6 +149,8 @@ class FieldInstance {
 	public function isEqualToDefault(arrayIdx:Int) {
 		if( isUsingDefault(arrayIdx) )
 			return true;
+		else if( internalValues[arrayIdx]==V_Null )
+			return def.getDefault()==null;
 		else {
 			var v = internalValues[arrayIdx];
 			switch def.type {
@@ -401,6 +407,8 @@ class FieldInstance {
 	}
 
 	public function valueIsNull(arrayIdx:Int) {
+		if( internalValues[arrayIdx]==V_Null )
+			return true;
 		var v : Dynamic = switch def.type {
 			case F_Int: getInt(arrayIdx);
 			case F_Color: getColorAsInt(arrayIdx);
@@ -522,6 +530,7 @@ class FieldInstance {
 	public function getInt(arrayIdx:Int) : Null<Int> {
 		require(F_Int);
 		return isUsingDefault(arrayIdx) ? def.getIntDefault() : switch internalValues[arrayIdx] {
+			case V_Null: null;
 			case V_Int(v): def.iClamp(v);
 			case _: throw "unexpected";
 		}
@@ -562,6 +571,7 @@ class FieldInstance {
 	public function getColorAsInt(arrayIdx:Int) : Null<Int> {
 		require(F_Color);
 		return isUsingDefault(arrayIdx) ? def.getColorDefault() : switch internalValues[arrayIdx] {
+			case V_Null: null;
 			case V_Int(v): v;
 			case _: throw "unexpected";
 		}
@@ -572,6 +582,7 @@ class FieldInstance {
 		return isUsingDefault(arrayIdx)
 			? def.getColorDefault()==null ? null : dn.legacy.Color.intToHex(def.getColorDefault())
 			: switch internalValues[arrayIdx] {
+				case V_Null: null;
 				case V_Int(v): dn.legacy.Color.intToHex(v);
 				case _: throw "unexpected";
 			}
@@ -580,6 +591,7 @@ class FieldInstance {
 	public function getFloat(arrayIdx:Int) : Null<Float> {
 		require(F_Float);
 		return isUsingDefault(arrayIdx) ? def.getFloatDefault() : switch internalValues[arrayIdx] {
+			case V_Null: null;
 			case V_Float(v): def.fClamp(v);
 			case _: throw "unexpected";
 		}
@@ -588,6 +600,7 @@ class FieldInstance {
 	public function getBool(arrayIdx:Int) : Bool {
 		require(F_Bool);
 		return isUsingDefault(arrayIdx) ? def.getBoolDefault() : switch internalValues[arrayIdx] {
+			case V_Null: false;
 			case V_Bool(v): v;
 			case _: throw "unexpected";
 		}
@@ -596,6 +609,7 @@ class FieldInstance {
 	public function getString(arrayIdx:Int) : String {
 		def.requireAny([ F_String, F_Text ]);
 		var out = isUsingDefault(arrayIdx) ? def.getStringDefault() : switch internalValues[arrayIdx] {
+			case V_Null: null;
 			case V_String(v): v;
 			case _: throw "unexpected";
 		}
@@ -605,6 +619,7 @@ class FieldInstance {
 	public function getFilePath(arrayIdx:Int) : String {
 		def.require(F_Path);
 		var out = isUsingDefault(arrayIdx) ? null : switch internalValues[arrayIdx] {
+			case V_Null: null;
 			case V_String(v): v;
 			case _: throw "unexpected";
 		}
@@ -616,6 +631,7 @@ class FieldInstance {
 			return null;
 		else {
 			var out = isUsingDefault(arrayIdx) ? null : switch internalValues[arrayIdx] {
+				case V_Null: null;
 				case V_String(v): v;
 				case _: throw "unexpected";
 			}
@@ -704,6 +720,7 @@ class FieldInstance {
 			return null;
 		else {
 			var out = isUsingDefault(arrayIdx) ? def.getTileRectDefaultStr() : switch internalValues[arrayIdx] {
+				case V_Null: null;
 				case V_String(v):
 					v;
 				case _: throw "unexpected";
@@ -756,6 +773,7 @@ class FieldInstance {
 	public function getEnumValue(arrayIdx:Int) : Null<String> {
 		require( F_Enum(null) );
 		return isUsingDefault(arrayIdx) ? def.getEnumDefault() : switch internalValues[arrayIdx] {
+			case V_Null: null;
 			case V_String(v): v;
 			case _: throw "unexpected";
 		}
@@ -774,6 +792,7 @@ class FieldInstance {
 	public function getPointStr(arrayIdx:Int) : Null<String> {
 		require( F_Point );
 		return isUsingDefault(arrayIdx) ? def.getPointDefault() : switch internalValues[arrayIdx] {
+			case V_Null: null;
 			case V_String(v): v;
 			case _: throw "unexpected";
 		}

@@ -347,7 +347,7 @@ class FieldInstancesForm {
 				if( fi.def.canBeNull || fi.getEnumValue(arrayIdx)==null ) {
 					var jOpt = new J('<option/>');
 					jOpt.appendTo(jSelect);
-					jOpt.attr("value","");
+					jOpt.attr("value","_null");
 					if( fi.def.canBeNull )
 						jOpt.text("-- null --");
 					else {
@@ -359,7 +359,7 @@ class FieldInstancesForm {
 							jSelect.blur( function(ev) renderForm() );
 						});
 					}
-					if( fi.getEnumValue(arrayIdx)==null )
+					if( fi.valueIsNull(arrayIdx) && ( !fi.isUsingDefault(arrayIdx) || fi.def.getEnumDefault()==null ) )
 						jOpt.attr("selected","selected");
 				}
 
@@ -402,9 +402,11 @@ class FieldInstancesForm {
 				}
 
 				jSelect.change( function(ev) {
-					var v = jSelect.val()=="" ? null : jSelect.val();
+					var v = jSelect.val();
 					if( v=="_default" )
 						fi.parseValue(arrayIdx, null);
+					else if( v=="_null" || v=="" )
+						fi.setExplicitNull(arrayIdx);
 					else
 						fi.parseValue(arrayIdx, v);
 					onFieldChange(fi);

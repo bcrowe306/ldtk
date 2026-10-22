@@ -562,9 +562,9 @@ class Level {
 		return false;
 	}
 
-	public function getLayerInstance(?layerDefUid:Int, ?layerDef:data.def.LayerDef) : data.inst.LayerInstance {
+	public function getLayerInstance(?layerDefUid:Int, ?layerDef:data.def.LayerDef) : Null<data.inst.LayerInstance> {
 		if( layerDefUid==null && layerDef==null )
-			throw "Need 1 parameter";
+			return null;
 
 		if( layerDefUid==null )
 			layerDefUid = layerDef.uid;
@@ -573,7 +573,7 @@ class Level {
 			if( li.layerDefUid==layerDefUid )
 				return li;
 
-		throw "Missing layer instance for "+layerDefUid;
+		return null;
 	}
 
 	public function getLayerInstanceFromRule(r:data.def.AutoLayerRuleDef) {

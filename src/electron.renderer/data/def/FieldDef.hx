@@ -332,7 +332,7 @@ class FieldDef {
 
 	public function getUntypedDefault() : Dynamic {
 		return switch defaultOverride {
-			case null: null;
+			case null, V_Null: null;
 			case V_Int(v): v;
 			case V_Float(v): v;
 			case V_Bool(v): v;

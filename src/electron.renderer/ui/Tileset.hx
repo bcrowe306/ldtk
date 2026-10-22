@@ -684,22 +684,32 @@ class Tileset {
 
 
 	function onPickerMouseWheel(ev:js.html.WheelEvent) {
+		ev.preventDefault();
 
-		if( ev.deltaY!=0 ) {
-			ev.preventDefault();
+		if( App.ME.isCtrlCmdDown() || ev.ctrlKey || ev.metaKey ) {
+			if( ev.deltaY!=0 ) {
+				if( viewFitted )
+					return;
+
+				var oldLocalX = pageToLocalX(ev.pageX);
+				var oldLocalY = pageToLocalY(ev.pageY);
+
+				zoom += -ev.deltaY*0.001 * zoom;
+
+				var newLocalX = pageToLocalX(ev.pageX);
+				var newLocalY = pageToLocalY(ev.pageY);
+				scrollX += ( oldLocalX - newLocalX );
+				scrollY += ( oldLocalY - newLocalY );
+
+				tx = ty = null;
+			}
+		}
+		else {
 			if( viewFitted )
-				return;
+				setViewFit(false);
 
-			var oldLocalX = pageToLocalX(ev.pageX);
-			var oldLocalY = pageToLocalY(ev.pageY);
-
-			zoom += -ev.deltaY*0.001 * zoom;
-
-			var newLocalX = pageToLocalX(ev.pageX);
-			var newLocalY = pageToLocalY(ev.pageY);
-			scrollX += ( oldLocalX - newLocalX );
-			scrollY += ( oldLocalY - newLocalY );
-
+			scrollX += ev.deltaX;
+			scrollY += ev.deltaY;
 			tx = ty = null;
 		}
 	}

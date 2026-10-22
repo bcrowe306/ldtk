@@ -182,9 +182,112 @@ async function testFixes() {
             throw new Error('tidy cleanup assertion failed: ' + JSON.stringify(tidyCleanupRes));
         }
 
+        // Test 9: Test Enum field explicit null when default is not null (#1252)
+        const enumNullRes = await driver.eval(`
+            (() => {
+                try {
+                    const ed = window.editor;
+                    const level = ed.project.worlds[0].levels[0];
+                    let targetEi = null;
+                    for (const li of level.layerInstances) {
+                        if (li.entityInstances && li.entityInstances.length > 0) {
+                            targetEi = li.entityInstances[0];
+                            break;
+                        }
+                    }
+                    if (!targetEi) return { skipped: true };
+
+                    // Find or create an enum field definition with default
+                    
+                    let enumFd = null;
+                    let targetEntDef = null;
+                    for (const ent of ed.project.defs.entities) {
+                        for (const fd of ent.fieldDefs) {
+                            if (fd.type && fd.type._hx_index === 6) {
+                                enumFd = fd;
+                                targetEntDef = ent;
+                                break;
+                            }
+                        }
+                        if (enumFd) break;
+                    }
+                    if (!enumFd) return { skipped: true, reason: "No enum field in project" };
+
+                    // Find or create an entity instance for targetEntDef
+                    enumFd.canBeNull = true;
+                    const enumDef = ed.project.defs.getEnumDef(enumFd.type.enumDefUid);
+                    if (!enumDef || enumDef.values.length === 0) return { skipped: true };
+                    enumFd.setDefault(enumDef.values[0].id);
+
+                    const fi = targetEi.getFieldInstance(enumFd, true);
+                    // Verify default value works
+                    fi.parseValue(0, null);
+                    const isDefault = fi.isUsingDefault(0);
+                    const defaultVal = fi.getEnumValue(0);
+
+                    // Now set explicit null
+                    fi.setExplicitNull(0);
+                    const isUsingDefAfterNull = fi.isUsingDefault(0);
+                    const isNullAfterNull = fi.valueIsNull(0);
+                    const enumValAfterNull = fi.getEnumValue(0);
+                    const jsonVal = fi.toJson().__value;
+
+                    return {
+                        success: isDefault && defaultVal === enumDef.values[0].id
+                            && !isUsingDefAfterNull && isNullAfterNull && enumValAfterNull === null && jsonVal === null
+                    };
+                } catch(e) {
+                    return { error: e.message, stack: e.stack };
+                }
+            })()
+        `);
+        console.log('[E2E Test] #1252 Enum explicit null resilience test:', enumNullRes);
+        if (enumNullRes.error || (!enumNullRes.skipped && !enumNullRes.success)) {
+            throw new Error('#1252 assertion failed: ' + JSON.stringify(enumNullRes));
+        }
+
+        // Test 10: Test getLayerInstance null safety & missing layer in LevelRender (#1127)
+        const missingLayerRes = await driver.eval(`
+            (() => {
+                try {
+                    const ed = window.editor;
+                    const level = ed.project.worlds[0].levels[0];
+                    const missing = level.getLayerInstance(999999);
+                    ed.levelRender.invalidateLayer(null, 999999);
+                    return { success: missing === null };
+                } catch(e) {
+                    return { error: e.message, stack: e.stack };
+                }
+            })()
+        `);
+        console.log('[E2E Test] #1127 missing layer resilience test:', missingLayerRes);
+        if (missingLayerRes.error || !missingLayerRes.success) {
+            throw new Error('#1127 assertion failed: ' + JSON.stringify(missingLayerRes));
+        }
+
+        // Test 11: Test project external files dir without extension (#1209)
+        const externalDirRes = await driver.eval(`
+            (() => {
+                try {
+                    const ed = window.editor;
+                    const oldPath = ed.project.filePath.full;
+                    ed.project.filePath.parseFilePath("/test/dir/all-the-levels");
+                    const extDir = ed.project.getAbsExternalFilesDir();
+                    ed.project.filePath.parseFilePath(oldPath);
+                    return { success: extDir.endsWith("all-the-levels_data") };
+                } catch(e) {
+                    return { error: e.message, stack: e.stack };
+                }
+            })()
+        `);
+        console.log('[E2E Test] #1209 project dir collision resilience test:', externalDirRes);
+        if (externalDirRes.error || !externalDirRes.success) {
+            throw new Error('#1209 assertion failed: ' + JSON.stringify(externalDirRes));
+        }
+
         // Capture verification screenshot
-        await driver.captureScreenshot(path.resolve(__dirname, 'batch2_verified.png'));
-        console.log('[E2E Test] All batch 1 and 2 bug fix tests passed successfully!');
+        await driver.captureScreenshot(path.resolve(__dirname, 'batch3_verified.png'));
+        console.log('[E2E Test] All batch 1, 2, and 3 bug fix tests passed successfully!');
     } catch(err) {
         console.error('[E2E Test] Test failed:', err);
         process.exitCode = 1;

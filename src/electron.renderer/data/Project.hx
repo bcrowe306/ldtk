@@ -78,7 +78,8 @@ class Project {
 	}
 
 	public function getAbsExternalFilesDir() {
-		return filePath.directoryWithSlash + filePath.fileName;
+		var sub = filePath.extension!=null && filePath.extension.length>0 ? filePath.fileName : filePath.fileName+"_data";
+		return filePath.directoryWithSlash + sub;
 	}
 
 	public function getAbsBackupDir() : String{
